@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mandi Direct – Farm Produce Marketplace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">Mandi Direct<small>Farm to buyer, no middlemen</small></div>
+  <nav id="nav" aria-label="Main">
+    <button data-view="market" class="on">Market</button>
+    <button data-view="farmers">Farmers</button>
+    <button data-view="orders">My orders</button>
+    <button data-view="sell">Sell produce</button>
+  </nav>
+</header>
+
+<main>
+  <!-- MARKET -->
+  <section id="view-market" class="view">
+    <div class="hero">
+      <h1>What’s growing near you, and when it’s ready.</h1>
+      <div class="search"><input id="q" type="search" placeholder="Search crop, farmer or village" aria-label="Search produce"></div>
+      <div id="chips" class="chips" role="group" aria-label="Categories"></div>
+      <div class="tools">
+        <label><input type="checkbox" id="nowOnly"> Available now only</label>
+        <label>Sort <select id="sort">
+          <option value="soon">Ready soonest</option>
+          <option value="low">Price: low to high</option>
+          <option value="high">Price: high to low</option>
+          <option value="qty">Most quantity</option></select></label>
+        <span id="count" class="muted"></span>
+      </div>
+    </div>
+    <div id="grid" class="grid"></div>
+  </section>
+
+  <!-- FARMERS -->
+  <section id="view-farmers" class="view" hidden>
+    <h2>Meet the farmers</h2>
+    <div id="farmerGrid" class="grid"></div>
+  </section>
+
+  <!-- ORDERS -->
+  <section id="view-orders" class="view" hidden>
+    <h2>My order requests</h2>
+    <p class="muted">Orders are matched to the name you used when requesting.</p>
+    <div class="row"><input id="buyerName" placeholder="Your name" aria-label="Your name"></div>
+    <div id="myOrders" class="list"></div>
+  </section>
+
+  <!-- SELL -->
+  <section id="view-sell" class="view" hidden>
+    <h2>Farmer dashboard</h2>
+    <div class="row"><label>Selling as <select id="me"></select></label></div>
+    <div class="two">
+      <form id="listForm" class="panel">
+        <h3>Add a listing</h3>
+        <label>Crop name<input name="name" required maxlength="40"></label>
+        <label>Category<select name="cat" id="catSel"></select></label>
+        <div class="split">
+          <label>Quantity<input name="qty" type="number" min="1" required></label>
+          <label>Unit<select name="unit"><option>kg</option><option>quintal</option><option>dozen</option><option>bunch</option></select></label>
+        </div>
+        <div class="split">
+          <label>Price per unit (₹)<input name="price" type="number" min="1" required></label>
+          <label>Ready on<input name="date" type="date" required></label>
+        </div>
+        <label>Notes<input name="note" maxlength="80" placeholder="e.g. organic, hand-picked"></label>
+        <button class="btn" type="submit">Publish listing</button>
+      </form>
+      <div>
+        <h3>Incoming requests</h3>
+        <div id="incoming" class="list"></div>
+        <h3>Your listings</h3>
+        <div id="mine" class="list"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<dialog id="dlg"><div id="dlgBody"></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<footer>Demo marketplace. Data is saved only in this browser. <button id="reset" class="link">Reset demo data</button></footer>
+<script src="script.js"></script>
+</body>
+</html>
